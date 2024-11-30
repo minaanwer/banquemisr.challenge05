@@ -78,7 +78,7 @@ public class TaskService {
         }
         if (searchCriteria.getStatus() != null) {
             spec = spec.and((root, query, builder) ->
-                    builder.equal(root.get("status"), searchCriteria.getStatus()));
+                    builder.equal(root.get("status"), Enum.valueOf(Status.class,searchCriteria.getStatus())));
         }
         if (searchCriteria.getDueDateFrom() != null) {
             spec = spec.and((root, query, builder) ->
