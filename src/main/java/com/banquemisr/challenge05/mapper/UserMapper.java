@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class UserMapper {
-
-
     public UserDto map(UserDetails src) {
         UserDto dest = new UserDto();
         dest.setUsername(src.getUsername());

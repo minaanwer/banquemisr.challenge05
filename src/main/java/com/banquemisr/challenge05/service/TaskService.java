@@ -7,7 +7,7 @@ import com.banquemisr.challenge05.util.Priority;
 import com.banquemisr.challenge05.util.Status;
 import com.banquemisr.challenge05.model.TaskEntity;
 import com.banquemisr.challenge05.repo.TaskRepository;
-import com.banquemisr.challenge05.repo.TaskSeachRepository;
+import com.banquemisr.challenge05.repo.TaskSearchRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskService {
     private final TaskRepository taskRepository;
-    private final TaskSeachRepository taskSeachRepository;
+    private final TaskSearchRepository taskSearchRepository;
     private final TaskMapper taskMapper;
 
     @Transactional
@@ -88,7 +88,7 @@ public class TaskService {
             spec = spec.and((root, query, builder) ->
                     builder.lessThanOrEqualTo(root.get("dueDate"), searchCriteria.getDueDateTo()));
         }
-        Page<TaskEntity> taskEntities = taskSeachRepository.findAll(spec, pageable);
+        Page<TaskEntity> taskEntities = taskSearchRepository.findAll(spec, pageable);
         return taskEntities.map(taskMapper::map);
     }
 }

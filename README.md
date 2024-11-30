@@ -31,3 +31,14 @@ and mention to create db and add this users first
 
 
 
+TODO: 
+
+1- FIX search issue 
+2- adjust filter issue --
+3- add unit test at least for every node one unit test 
+4- add email sender 
+5- adjust notification after mail sent 
+6- adjust read me notes 
+7- 
+
+

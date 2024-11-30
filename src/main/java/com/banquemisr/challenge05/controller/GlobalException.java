@@ -17,6 +17,7 @@ public class GlobalException {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ErrorResponse> handleConstraintViolation(ConstraintViolationException ex) {
+        ex.printStackTrace();
         List<String> errors = ex.getConstraintViolations().stream()
                 .map(violation -> violation.getPropertyPath() + ": " + violation.getMessage())
                 .collect(Collectors.toList());
@@ -31,6 +32,7 @@ public class GlobalException {
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> validationExceptions(MethodArgumentNotValidException ex) {
+        ex.printStackTrace();
         List<String> errors = ex.getBindingResult().getFieldErrors().stream()
                 .map(FieldError::getDefaultMessage)
                 .collect(Collectors.toList());
@@ -45,6 +47,7 @@ public class GlobalException {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponse> runtimeException(RuntimeException ex) {
+        ex.printStackTrace();
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
@@ -55,6 +58,7 @@ public class GlobalException {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> illegalArgumentException(IllegalArgumentException ex) {
+        ex.printStackTrace();
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 HttpStatus.BAD_REQUEST.getReasonPhrase(),
@@ -65,6 +69,7 @@ public class GlobalException {
 
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<ErrorResponse> pointerException(NullPointerException ex) {
+        ex.printStackTrace();
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
@@ -75,6 +80,7 @@ public class GlobalException {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> genericException(Exception ex) {
+        ex.printStackTrace();
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
