@@ -38,4 +38,9 @@ public class TaskEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
+
+    public TaskEntity(String s, String s1) {
+        this.setTitle(s);
+        this.setDescription(s1);
+    }
 }
