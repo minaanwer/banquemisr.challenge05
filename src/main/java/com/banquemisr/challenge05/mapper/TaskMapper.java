@@ -2,8 +2,8 @@ package com.banquemisr.challenge05.mapper;
 
 
 import com.banquemisr.challenge05.dto.TaskDto;
-import com.banquemisr.challenge05.model.Priority;
-import com.banquemisr.challenge05.model.Status;
+import com.banquemisr.challenge05.util.Priority;
+import com.banquemisr.challenge05.util.Status;
 import com.banquemisr.challenge05.model.TaskEntity;
 import org.springframework.stereotype.Component;
 

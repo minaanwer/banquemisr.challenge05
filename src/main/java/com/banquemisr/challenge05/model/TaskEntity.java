@@ -1,5 +1,7 @@
 package com.banquemisr.challenge05.model;
 
+import com.banquemisr.challenge05.util.Priority;
+import com.banquemisr.challenge05.util.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

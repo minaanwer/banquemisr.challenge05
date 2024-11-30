@@ -33,7 +33,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         }else {
             System.out.println("Invalid or missing token");
-
         }
 
         filterChain.doFilter(request, response);
