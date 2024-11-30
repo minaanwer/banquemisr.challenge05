@@ -24,3 +24,10 @@ Follow these steps to get the solution running on your machine:
 ## Setup Instructions
 ## Usage
 ## Contributing
+
+
+do not forget to seed db with admin user and normal user 
+and mention to create db and add this users first
+
+
+
