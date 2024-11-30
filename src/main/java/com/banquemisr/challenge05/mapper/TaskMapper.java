@@ -2,6 +2,7 @@ package com.banquemisr.challenge05.mapper;
 
 
 import com.banquemisr.challenge05.dto.TaskDto;
+import com.banquemisr.challenge05.model.User;
 import com.banquemisr.challenge05.util.Priority;
 import com.banquemisr.challenge05.util.Status;
 import com.banquemisr.challenge05.model.TaskEntity;
@@ -33,7 +34,9 @@ public class TaskMapper {
         if (taskDto.getPriority() != null) {
             taskEntity.setPriority(Priority.valueOf(taskDto.getPriority()));
         }
-        // taskEntity.setUser(user); // Assuming the User is handled separately
+        User user = new User();
+        user.setId(taskDto.getId());
+        taskEntity.setUser(user); // Assuming the User is handled separately
         return taskEntity;
     }
 
