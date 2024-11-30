@@ -43,23 +43,6 @@ public class JwtTokenUtil {
                 .getSubject();
     }
 
-    public boolean validateToken(String token, String username) {
-        String extractedUsername = getUsernameFromToken(token);
-        return (extractedUsername.equals(username) && !isTokenExpired(token));
-    }
-
-    public boolean validateToken(String token) {
-     return true;
-    }
-
-    private boolean isTokenExpired(String token) {
-        Date expiration = Jwts.parser()
-                .setSigningKey(secretKey)
-                .parseClaimsJws(token)
-                .getBody()
-                .getExpiration();
-        return expiration.before(new Date());
-    }
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {

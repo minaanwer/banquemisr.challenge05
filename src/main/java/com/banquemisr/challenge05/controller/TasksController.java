@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,9 @@ public class TasksController {
     private final TaskService taskService;
 
     @PostMapping
-    public ResponseEntity<?> createNewTask(@Valid @RequestBody TaskDto newTask) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(newTask));
+    public ResponseEntity<?> createNewTask(@Valid @RequestBody TaskDto newTask , Authentication authentication) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(newTask,authentication));
     }
 
     @GetMapping

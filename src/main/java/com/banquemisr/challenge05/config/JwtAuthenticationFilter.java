@@ -1,5 +1,6 @@
 package com.banquemisr.challenge05.config;
 
+import com.banquemisr.challenge05.service.CustomUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -31,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenUtil jwtTokenUtil;
 
     private final UserDetailsService userDetailsService;
-
+    private final CustomUserDetailsService customUserDetailsService;
 
 
 
@@ -44,8 +45,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (jwt != null && jwtTokenUtil.validateJwtToken(jwt)) {
             String username = jwtTokenUtil.getUsernameFromToken(jwt);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                     username, null, userDetails.getAuthorities());
+            authentication.setDetails(customUserDetailsService.loadUserIdByUsername(username));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             System.out.println("Token validated successfully");
 

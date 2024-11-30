@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +28,8 @@ public class TaskService {
     private final TaskMapper taskMapper;
 
     @Transactional
-    public TaskDto createTask(TaskDto taskDto) {
+    public TaskDto createTask(TaskDto taskDto , Authentication authentication) {
+        taskDto.setId((Long) authentication.getDetails());
         TaskEntity taskEntity = taskMapper.map(taskDto);
         TaskEntity savedTask = taskRepository.save(taskEntity);
         return taskMapper.map(savedTask);

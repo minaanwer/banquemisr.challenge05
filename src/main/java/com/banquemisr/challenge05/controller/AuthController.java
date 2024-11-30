@@ -44,6 +44,7 @@ public class AuthController {
             return ResponseEntity.ok(loginResponseDto);
 
         } catch (AuthenticationException e) {
+            e.printStackTrace();
             return ResponseEntity.status(401).body(null);
         }
     }
