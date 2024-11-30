@@ -34,7 +34,6 @@ public class TaskSchedulerService {
         List<TaskEntity> upcomingTasks = taskRepository.findByDueDateBetween(today, thresholdDate);
 
         for (TaskEntity task : upcomingTasks) {
-            // Check if the task already has a notification sent for it
             if (!isNotificationSentForTask(task)) {
                 sendTaskNotification(task);
             }
